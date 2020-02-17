@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CUHC-registeration form</title>
+
+    <link rel="stylesheet" href="../css/mystyle.css">
+
+    <style>
+        /* The container */
+        
+        .container {
+            font-size: 0.6em;
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        /* Hide the browser's default checkbox */
+        
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        /* Create a custom checkbox */
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            color: rgb(255, 255, 255);
+            background-color: #ffffff;
+        }
+        /* On mouse-over, add a grey background color */
+        
+        .container:hover input~.checkmark {
+            background-color: #ffffff;
+        }
+        /* When the checkbox is checked, add a blue background */
+        
+        .container input:checked~.checkmark {
+            background-color: #2196F3;
+        }
+        /* Create the checkmark/indicator (hidden when not checked) */
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            color: rgb(0, 0, 0);
+        }
+        /* Show the checkmark when checked */
+        
+        .container input:checked~.checkmark:after {
+            display: block;
+        }
+        /* Style the checkmark/indicator */
+        
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="dotnav" style="position: absolute; z-index: 2">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="holder"></div>
+    <div class="med1"></div>
+
+    <div class="page1">
+
+        <p class="text-bold" style="margin-left:5vw; align-self: flex-start">Terms and conditions of use</p>
+
+        <div class="condition">
+            <p>1. This project is a collaboration of CUNEX and CUHC.</p>
+            <p>2. A student needs to fill in the form to register as a CUHC member. Then, a student will be notified of health news in order to acknowledge benefits in the future. </p>
+            <p>3. Student’s information will be stored in a CUHC patient database. Hence, a student can access the service throughout the student period with free of charge.</p>
+            <p>4. A Student allows CUNEX to access his/her personal information in order to accommodate health care services and other facilities in the future.</p>
+        </div>
+
+        <label class="container" id="container" style="pointer-events: none">
+            <p style="pointer-events: none">I accept the terms and conditions of use.</p>
+            <input type="checkbox"  name="accepted">
+            <span style="pointer-events: auto" id="accept" class="checkmark"></span>
+        </label>
+
+        <div class="continue">
+            <a class="mybtn" id="mybtn" onclick="getPage1()">Next</a>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../js/lock.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        document.getElementById("container").innerHTML = '<p style="pointer-events: none">I accept the terms and conditions of use.</p>' + '\n' + '<input type="checkbox"  name="accepted">' + '\n' + '<span style="pointer-events: auto" id="accept" class="checkmark"></span>';
+        $('#accept').click(function() {
+            if ($('#accept').hasClass("active")) {
+                $('#accept').removeClass("active")
+                $('#mybtn').removeClass('submit');
+            } else {
+                $('#accept').addClass("active")
+                $('#mybtn').addClass('submit');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

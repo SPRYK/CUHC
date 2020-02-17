@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CUHC-registeration form</title>
+
+    <link rel="stylesheet" href="../css/mystyle.css">
+
+</head>
+
+<body>
+
+    <div class="dotnav" style="position: absolute; z-index: 2">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="holder"></div>
+    <div class="med1"></div>
+
+    <div class="page3">
+
+        <div class="topic">
+            <div class="head">Height and weight</div>
+            <div class="information">
+                <p><span class="text-bold">Weight</span>
+                    <span><input class="input" type="number" id="weight" name="weight" placeholder="weight"></span>
+                    <span>kilograms</span>
+                </p>
+                <p><span class="text-bold">Height</span>
+                    <span><input class="input" type="number" id="height" name="height" placeholder="height"></span>
+                    <span>centimeters</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="med3"></div>
+
+        <div class="continue"></div>
+
+        <div class="bottom">
+            <a class="mybtn" id="mybtn" onclick="getPage3()">Next</a>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/lock.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $('#weight').keyup(function() {
+            if ($('#weight').val().length > 0 && $('#height').val().length > 0) {
+                $('#mybtn').addClass('submit');
+            } else {
+                $('#mybtn').removeClass('submit');
+            }
+        });
+
+        $('#height').keyup(function() {
+            if ($('#weight').val().length > 0 && $('#height').val().length > 0) {
+                $('#mybtn').addClass('submit');
+            } else {
+                $('#mybtn').removeClass('submit');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

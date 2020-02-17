@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CUHC-registeration form</title>
+
+    <link rel="stylesheet" href="../css/mystyle.css">
+
+</head>
+
+<body>
+
+    <div class="holder"></div>
+    <div class="med1"></div>
+
+    <div class="page7">
+
+        <p class="text-bold" style="font-size: 1.2em">ข้อมูลส่วนตัว</p>
+
+        <div class="paragraph margin-top">
+
+            <div>
+                <label class="text-bold">รหัสนิสิต : </label>
+                <label id="studentid"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">โรคประจำตัว : </label>
+                <label id="ansDisease"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">สิ่งที่แพ้ : </label>
+                <label id="ansAllergy"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">น้ำหนัก : </label>
+                <label id="ansWeight"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">ส่วนสูง : </label>
+                <label id="ansHeight"></label>
+            </div>
+
+        </div>
+
+        <div class="bottom" style="font-size:1em">
+            <a class="mybtn submit" onclick="getPage7()" style="position: relative;">ยืนยัน</a>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/lock.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        function createURL(args) {
+            var queryString = "";
+            var keys = Object.keys(args);
+            for (i = 0; i < keys.length; i++) {
+                queryString += ((i == 0) ? "?" : "&") + keys[i] + "=" + args[keys[i]];
+            }
+            return queryString;
+        }
+
+        function getQueryStringArgs() {
+            let qs = (location.search.length > 0 ? location.search.substring(1) : '');
+            let args = {};
+            let items = qs.length ? qs.split('&') : [];
+            let item = null;
+            let name = null;
+            let value = null;
+
+            for (i = 0; i < items.length; i++) {
+                item = items[i].split('=');
+
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+
+                }
+            }
+            return args;
+        }
+
+        function printObject(o) {
+            var out = "";
+            for (var p in o) {
+                out += p + ': ' + o[p] + '\n';
+            }
+            alert(out);
+        }
+
+        function getPage7() {
+            let args2 = getQueryStringArgs();
+            window.location.href = "page6.html" + createURL(args2);
+        }
+
+        let args = getQueryStringArgs();
+        document.getElementById('studentid').innerHTML = args["studentid"];
+        document.getElementById('ansWeight').innerHTML = args["weight"] + " กิโลกรัม";
+        document.getElementById('ansHeight').innerHTML = args["height"] + " เซนติเมตร";
+        document.getElementById('ansDisease').innerHTML = args["disease"];
+        document.getElementById('ansAllergy').innerHTML = args["allergy"];
+
+    </script>
+
+</body>
+
+</html>

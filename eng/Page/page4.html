@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CUHC-registeration form</title>
+
+    <link rel="stylesheet" href="../css/mystyle.css">
+
+</head>
+
+<body>
+
+    <div class="dotnav" style="position: absolute; z-index: 2">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="holder"></div>
+    <div class="med1"></div>
+
+    <div class="page4">
+
+        <p class="text-bold" style="font-size: 1.2em">Check your information</p>
+
+        <div class="paragraph margin-top">
+
+            <div>
+                <label class="text-bold">Student ID : </label>
+                <label id="studentid"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">Chronic health conditions : </label>
+                <label id="ansDisease"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">Allergies : </label>
+                <label id="ansAllergy"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">Weight : </label>
+                <label id="ansWeight"></label>
+            </div>
+
+            <div>
+                <label class="text-bold">Height : </label>
+                <label id="ansHeight"></label>
+            </div>
+
+        </div>
+
+        <div class="condition" style="justify-content: center; align-items: center; width: 100%; ">
+            <p class="text-center" style="font-size: 1.5em; margin-top: 5px; margin-bottom: 5px; ">
+                Be careful! Please check your information before confirmation,</p>
+            <p class="text-center" style="font-size: 1.5em; margin-top: 5px; margin-bottom: 5px; ">so we can take care of the right one. ❤️️</p>
+        </div>
+        <div class="check"></div>
+
+        <div class="continue" style="margin-top:1em"></div>
+
+        <div class="bottom" style="font-size:1em">
+            <span><a class="mybtn submit" onclick="back()" style="position: relative; margin-right: 1em;">Edit</a></span>
+            <span><a class="mybtn submit" onclick="sentData()" style="position: relative;">Confirm</a></span>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/lock.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        function createURL(args) {
+            var queryString = "";
+            var keys = Object.keys(args);
+            for (i = 0; i < keys.length; i++) {
+                queryString += ((i == 0) ? "?" : "&") + keys[i] + "=" + args[keys[i]];
+            }
+            return queryString;
+        }
+
+        function getQueryStringArgs() {
+            let qs = (location.search.length > 0 ? location.search.substring(1) : '');
+            let args = {};
+            let items = qs.length ? qs.split('&') : [];
+            let item = null;
+            let name = null;
+            let value = null;
+
+            for (i = 0; i < items.length; i++) {
+                item = items[i].split('=');
+
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+
+                }
+            }
+            return args;
+        }
+
+        function printObject(o) {
+            var out = "";
+            for (var p in o) {
+                out += p + ': ' + o[p] + '\n';
+            }
+            alert(out);
+        }
+
+        function getPage4() {
+            let args2 = getQueryStringArgs();
+            window.location.href = "page5.html" + createURL(args2);
+        }
+
+        function back() {
+            let args2 = getQueryStringArgs();
+            window.location.href = "page2.html?studentid=" + args["studentid"];
+        }
+
+        let args = getQueryStringArgs();
+        document.getElementById('studentid').innerHTML = args["studentid"];
+        document.getElementById('ansWeight').innerHTML = args["weight"] + " kilograms";
+        document.getElementById('ansHeight').innerHTML = args["height"] + " centimeters";
+        document.getElementById('ansDisease').innerHTML = args["disease"];
+        document.getElementById('ansAllergy').innerHTML = args["allergy"];
+
+        function sentData() {
+            var args2 = getQueryStringArgs();
+            var term = {
+                "stuID": args2["studentid"],
+                "congentinalDisease": args2["disease"],
+                "drugAllergy": args2["allergy"],
+                "weight": args2["weight"],
+                "height": args2["height"],
+            };
+            var posting = $.post("https://asia-east2-chula-health-care.cloudfunctions.net/api/createAccount", term);
+            posting.done(function(data) {
+                console.log(data);
+            });
+            window.location.href = "page5.html" + createURL(args2);
+        }
+    </script>
+
+</body>
+
+</html>

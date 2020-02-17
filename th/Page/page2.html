@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CUHC-registeration form</title>
+
+    <link rel="stylesheet" href="../css/mystyle.css">
+
+</head>
+
+<body>
+
+    <div class="dotnav" style="position: absolute; z-index: 2">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="holder"></div>
+    <div class="med1"></div>
+
+    <div class="page2">
+
+
+
+        <div class="topic">
+            <p class="head">โรคประจำตัว</p>
+            <p class="subhead">ถ้าไม่มีโรคประจำตัวไม่ต้องเติมลงในช่องว่าง</p>
+            <input class="input" type="text" id="disease" name="disease" placeholder="โรคประจำตัว" value="">
+        </div>
+
+        <div class="margin-top"></div>
+
+        <div class="topic margin-top">
+            <p class="head">สิ่งที่แพ้</p>
+            <p class="subhead">ถ้าไม่มีสิ่งที่แพ้ไม่ต้องเติมลงในช่องว่าง</p>
+            <input class="input" type="text" id="allergy" name="allergy" placeholder="สิ่งที่แพ้" value="">
+        </div>
+
+        <div class="med2"></div>
+
+        <div class="continue"></div>
+
+        <div class="bottom">
+            <a class="mybtn submit" id="mybtn" onclick="getPage2()">ต่อไป</a>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/lock.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        /* real time check */
+
+        /*
+            $('#disease').keyup(function() {
+                if ($('#disease').val().length > 0 && $('#allergy').val().length > 0) {
+                    $('#mybtn').addClass('submit');
+                } else {
+                    $('#mybtn').removeClass('submit');
+                }
+            });
+
+            $('#allergy').keyup(function() {
+                if ($('#disease').val().length > 0 && $('#allergy').val().length > 0) {
+                    $('#mybtn').addClass('submit');
+                } else {
+                    $('#mybtn').removeClass('submit');
+                }
+            });
+        */
+    </script>
+
+</body>
+
+</html>
